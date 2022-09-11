@@ -30,27 +30,6 @@ class UserServiceImplTest {
     UserServiceImpl userService;
 
     @Test
-    void getAllUsersIfDbIsNotEmpty() {
-        UserGetDto userGetDto = UserMapperUtil.convertToGetDto(createUser());
-        List<User> users = new ArrayList<>();
-        users.add(createUser());
-        when(userRepository.findAll()).thenReturn(users);
-        List<UserGetDto> actual = userService.getAllUsers();
-        List<UserGetDto> expected = List.of(userGetDto);
-        assertEquals(expected, actual);
-        verify(userRepository, times(1)).findAll();
-    }
-
-    @Test
-    void getAllUsersIfDbIsEmpty() {
-        when(userRepository.findAll()).thenReturn(new ArrayList<>());
-        List<UserGetDto> actual = userService.getAllUsers();
-        List<UserGetDto> expected = new ArrayList<>();
-        assertEquals(expected, actual);
-        verify(userRepository, times(1)).findAll();
-    }
-
-    @Test
     void getAllUsersIfRequestParamsIsCorrect() throws ParseException {
         UserGetDto userGetDto = UserMapperUtil.convertToGetDto(createUser());
         List<User> users = new ArrayList<>();

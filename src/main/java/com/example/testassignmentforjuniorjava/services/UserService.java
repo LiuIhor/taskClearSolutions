@@ -10,13 +10,6 @@ import java.util.Map;
 public interface UserService {
 
     /**
-     * Method to get all users
-     *
-     * @return List of users
-     */
-    List<UserGetDto> getAllUsers();
-
-    /**
      * Method to get all users whose birthday is between from and to
      *
      * @param from Start position

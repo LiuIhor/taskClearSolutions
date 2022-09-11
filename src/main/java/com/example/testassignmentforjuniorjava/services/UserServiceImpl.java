@@ -25,17 +25,12 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public List<UserGetDto> getAllUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(UserMapperUtil::convertToGetDto)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<UserGetDto> getAllUsers(Date from, Date to) {
         if (from == null || to == null) {
-            return getAllUsers();
+            return userRepository.findAll()
+                    .stream()
+                    .map(UserMapperUtil::convertToGetDto)
+                    .collect(Collectors.toList());
         } else if (to.before(from)) {
             throw new CustomException("'From' must be less than 'To'!");
         }
