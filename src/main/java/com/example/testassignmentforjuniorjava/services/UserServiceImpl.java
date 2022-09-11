@@ -34,6 +34,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserGetDto> getAllUsers(Date from, Date to) {
+        if (from == null || to == null) {
+            return getAllUsers();
+        } else if (to.before(from)) {
+            throw new CustomException("'From' must be less than 'To'!");
+        }
         return userRepository.findAllByBirthdayBetween(from, to)
                 .stream()
                 .map(UserMapperUtil::convertToGetDto)

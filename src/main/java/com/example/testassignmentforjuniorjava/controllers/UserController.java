@@ -2,7 +2,6 @@ package com.example.testassignmentforjuniorjava.controllers;
 
 import com.example.testassignmentforjuniorjava.dtos.UserGetDto;
 import com.example.testassignmentforjuniorjava.dtos.UserPostDto;
-import com.example.testassignmentforjuniorjava.exceptions.CustomException;
 import com.example.testassignmentforjuniorjava.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,13 +35,7 @@ public class UserController {
                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date from,
                                         @RequestParam(required = false)
                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date to) {
-        if (from == null || to == null) {
-            return userService.getAllUsers();
-        } else if (to.before(from)) {
-            throw new CustomException("'From' must be less than 'To'!");
-        } else {
-            return userService.getAllUsers(from, to);
-        }
+        return userService.getAllUsers(from, to);
     }
 
     /**
