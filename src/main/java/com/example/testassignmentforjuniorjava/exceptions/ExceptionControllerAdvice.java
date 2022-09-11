@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
@@ -68,6 +69,20 @@ public class ExceptionControllerAdvice {
     public DetailException handleCustomException(UserNotFoundException exception) {
         return new DetailException(exception.getMessage(),
                 HttpStatus.NOT_FOUND,
+                ZonedDateTime.now(ZoneId.of(ZONE_ID)));
+    }
+
+    /**
+     * Method to catch SQLIntegrityConstraintViolationException
+     *
+     * @param exception SQLIntegrityConstraintViolationException
+     * @return Information about exception
+     */
+    @ExceptionHandler(value = SQLIntegrityConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public DetailException handleSqlException(SQLIntegrityConstraintViolationException exception) {
+        return new DetailException(exception.getMessage(),
+                HttpStatus.BAD_REQUEST,
                 ZonedDateTime.now(ZoneId.of(ZONE_ID)));
     }
 }
