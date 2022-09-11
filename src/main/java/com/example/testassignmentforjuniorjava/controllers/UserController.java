@@ -3,8 +3,6 @@ package com.example.testassignmentforjuniorjava.controllers;
 import com.example.testassignmentforjuniorjava.dtos.UserGetDto;
 import com.example.testassignmentforjuniorjava.dtos.UserPostDto;
 import com.example.testassignmentforjuniorjava.services.UserService;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;

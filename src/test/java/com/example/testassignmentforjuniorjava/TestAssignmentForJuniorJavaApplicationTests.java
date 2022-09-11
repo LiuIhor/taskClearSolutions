@@ -9,5 +9,4 @@ class TestAssignmentForJuniorJavaApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }
