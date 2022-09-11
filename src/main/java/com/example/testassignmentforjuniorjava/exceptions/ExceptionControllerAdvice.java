@@ -63,7 +63,7 @@ public class ExceptionControllerAdvice {
      * @param exception UserNotFoundException
      * @return Information about exception
      */
-    @ExceptionHandler(value = CustomException.class)
+    @ExceptionHandler(value = UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public DetailException handleCustomException(UserNotFoundException exception) {
         return new DetailException(exception.getMessage(),
